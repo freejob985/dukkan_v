@@ -60,10 +60,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    @foreach ($myLang as $item)
-
-                    <th width="20%">{{translate('Name')}} in {{ $item->name }} </th>
-                    @endforeach
+                    <th width="20%">{{translate('Name')}}</th>
                     @if($type == 'Seller')
                         <th>{{translate('Seller Name')}}</th>
                     @endif
@@ -81,24 +78,14 @@
                 @foreach($products as $key => $product)
                     <tr>
                         <td>{{ ($key+1) + ($products->currentPage() - 1)*$products->perPage() }}</td>
-
-                        @foreach ($myLang as $item)
-
                         <td>
                             <a href="{{ route('product', $product->slug) }}" target="_blank" class="media-block">
                                 <div class="media-left">
                                     <img loading="lazy"  class="img-md" src="{{ my_asset($product->thumbnail_img)}}" alt="Image">
                                 </div>
-                                <div class="media-body">
-                                    @php $trans = App\ProductTranslation::where([['locale', $item->code], ['product_id', $product->id]])->first();  @endphp
-                                   @if (isset($trans->name)) {{ $trans->name }} @else لا يوجد ترجمه @endif
-
-                                </div>
+                                <div class="media-body">{{ __($product->name) }}</div>
                             </a>
                         </td>
-
-                        @endforeach
-
                         @if($type == 'Seller')
                             <td>{{ $product->user->name }}</td>
                         @endif

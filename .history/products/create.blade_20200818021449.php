@@ -14,18 +14,12 @@
 					<h3 class="panel-title">{{translate('Product Information')}}</h3>
 				</div>
 				<div class="panel-body">
-
-                    @foreach ($myLang as $index=>$locale)
-
 					<div class="form-group">
-
-						<label class="col-lg-2 control-label">{{translate('Product Name')}} in {{ $locale->name }} </label>
+						<label class="col-lg-2 control-label">{{translate('Product Name')}}</label>
 						<div class="col-lg-7">
-							<input type="text" class="form-control" name="{{ $locale->code }}[name]" placeholder="{{ translate('Product Name') }}" onchange="update_sku()" required>
+							<input type="text" class="form-control" name="name" placeholder="{{ translate('Product Name') }}" onchange="update_sku()" required>
 						</div>
-                    </div>
-               @endforeach
-
+					</div>
 					<div class="form-group" id="category">
 						<label class="col-lg-2 control-label">{{translate('Category')}}</label>
 						<div class="col-lg-7">
@@ -263,26 +257,20 @@
 
 					</div>
 				</div>
-            </div>
-
-            @foreach ($myLang as $index=>$locale)
-
+			</div>
 			<div class="panel">
 				<div class="panel-heading bord-btm">
-					<h3 class="panel-title">{{translate('Product Description')}} in {{ $locale->name }} </h3>
+					<h3 class="panel-title">{{translate('Product Description')}}</h3>
 				</div>
 				<div class="panel-body">
 					<div class="form-group">
-						<label class="col-lg-2 control-label">{{translate('Description')}} </label>
+						<label class="col-lg-2 control-label">{{translate('Description')}}</label>
 						<div class="col-lg-9">
-							<textarea class="editor" name="{{ $locale->code }}[description]"></textarea>
+							<textarea class="editor" name="description"></textarea>
 						</div>
 					</div>
 				</div>
-            </div>
-
-            @endforeach
-
+			</div>
             @if (\App\BusinessSetting::where('type', 'shipping_type')->first()->value == 'product_wise_shipping')
                 <div class="panel">
     				<div class="panel-heading bord-btm">
